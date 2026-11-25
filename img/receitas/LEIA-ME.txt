@@ -1,0 +1,2 @@
+Fotos dos pães: salve aqui (JPG, até 800 px) e mapeie em js/art.js, no objeto PHOTOS.
+Exemplo: 'pao-frances': 'pao-frances'  -> usa img/receitas/pao-frances.jpg
