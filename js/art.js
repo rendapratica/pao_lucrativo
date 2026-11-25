@@ -28,6 +28,18 @@
     'pao-queijo': { label: 'Pão de queijo', bg: ['#fff6d6', '#f9e08f'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'cheese', crust: ['#f8d67f', '#e0a83a'] },
     rosca: { label: 'Rosca doce', bg: ['#fff3cf', '#f8dc84'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'ring', crust: ['#f2b758', '#c98a30'] },
     broa: { label: 'Broa de milho', bg: ['#fff1c8', '#f6d97c'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'loaf', crust: ['#e8bb55', '#b8862c'] },
+    croissant: { label: 'Croissants folhados', bg: ['#fff3d2', '#f6d98a'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'croissant', crust: ['#eeb54f', '#a8641a'] },
+    brioche: { label: 'Brioches', bg: ['#fff1cc', '#f5d684'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'brioche', crust: ['#eaa94a', '#a65d16'] },
+    sonho: { label: 'Sonhos com açúcar', bg: ['#fff3d6', '#f6dc96'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'sonho', crust: ['#f0b968', '#c07a2a'] },
+    donut: { label: 'Donuts glaceados', bg: ['#fdeee4', '#f5d3c0'], table: ['#dcb27a', '#bd8b55'], bread: true, shape: 'donut', crust: ['#e8b266', '#b9772a'], glaze: ['#f7c6d4', '#ffffff'] },
+    churros: { label: 'Churros com açúcar e canela', bg: ['#fff1d2', '#f4d890'], table: ['#dcb27a', '#bd8b55'], bread: true, shape: 'churros', crust: ['#e8ae5e', '#b4701f'] },
+    canela: { label: 'Rolinhos de canela', bg: ['#fdf0dc', '#f2d6a8'], table: ['#dcb27a', '#bd8b55'], bread: true, shape: 'spiral', crust: ['#f3bd6c', '#c07f2c'] },
+    tranca: { label: 'Pão trançado', bg: ['#fff2d0', '#f6da8c'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'braid', crust: ['#f0b858', '#b26c1e'] },
+    focaccia: { label: 'Focaccia', bg: ['#fff4d6', '#f5de9a'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'focaccia', crust: ['#f3c872', '#c58a2c'] },
+    sirio: { label: 'Pão sírio', bg: ['#fff6e0', '#f5e1ae'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'sirio', crust: ['#f6dca4', '#d2a85c'] },
+    esfiha: { label: 'Esfihas abertas', bg: ['#fff1d6', '#f4d39a'], table: ['#dcb27a', '#bd8b55'], bread: true, shape: 'esfiha', crust: ['#f0bb66', '#b87a28'] },
+    enrolado: { label: 'Enroladinhos assados', bg: ['#fff1d4', '#f4d894'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'enrolado', crust: ['#f2bd62', '#b5701f'] },
+    creme: { label: 'Recheios e coberturas', bg: ['#fff6e2', '#f6e3b4'], table: ['#e3c37a', '#c9a24b'], bread: true, shape: 'bowl', crust: ['#fff3c9', '#f0cf7a'] },
     brownie: { label: 'Brownies de chocolate', bg: ['#f6e5cd', '#e3c08f'], table: ['#c99a63', '#9d6e3f'], square: true },
     palha: { label: 'Palha italiana', bg: ['#f8e8cf', '#e6c796'], table: ['#d3a56c', '#ad7d49'], square: true, palha: true },
     'pote-choc': { label: 'Bolo no pote de chocolate', bg: ['#f7e6d0', '#e4bf94'], table: ['#caa06a', '#a8794a'], jar: true, layers: ['#4a2616', '#a8683a', '#4a2616', '#a8683a'], topc: '#5a2e1b', sprinkles: true },
@@ -36,7 +48,7 @@
   DL.ART_KINDS = Object.keys(K).concat(['mix']);
 
   // Categoria de produto -> ilustração padrão
-  DL.artForCategory = (cat) => ({ 'Pães salgados': 'pao-frances', 'Pães doces': 'pao-doce', 'Roscas e broas': 'rosca', 'Salgados de forno': 'pao-queijo', 'Massas e recheios': 'pao-forma' })[cat] || 'mix';
+  DL.artForCategory = (cat) => ({ 'Pães salgados': 'pao-frances', 'Pães doces': 'pao-doce', 'Roscas e broas': 'rosca', 'Salgados de forno': 'pao-queijo', 'Massas e recheios': 'creme', 'Brioches e folhados': 'croissant', 'Sonhos e fritos': 'sonho' })[cat] || 'mix';
 
   function ballScene(id, cfg, rand, balls) {
     let s = '';
@@ -127,13 +139,77 @@
     return s;
   }
   function breadScene(id, cfg, rand) {
-    const c1 = cfg.crust[0], c2 = cfg.crust[1], g = 'url(#' + id + 'bg)', sc = 'rgba(255,243,205,.8)';
-    let s = '<defs><radialGradient id="' + id + 'bg" cx=".4" cy=".35" r=".85"><stop offset="0" stop-color="' + c1 + '"/><stop offset="1" stop-color="' + c2 + '"/></radialGradient></defs>';
+    const c1 = cfg.crust[0], c2 = cfg.crust[1], g = 'url(#' + id + 'cr)', sc = 'rgba(255,243,205,.8)';
+    let s = '<defs><radialGradient id="' + id + 'cr" cx=".4" cy=".35" r=".85"><stop offset="0" stop-color="' + c1 + '"/><stop offset="1" stop-color="' + c2 + '"/></radialGradient></defs>';
     s += '<ellipse cx="200" cy="228" rx="152" ry="16" fill="rgba(70,45,10,.2)"/>';
     if (cfg.shape === 'baguette') [140, 172, 204].forEach((y, r) => { s += '<ellipse cx="200" cy="' + y + '" rx="128" ry="19" fill="' + g + '" transform="rotate(-8 200 ' + y + ')"/>'; [100, 140, 180, 220, 260].forEach((x) => { s += '<path d="M' + x + ' ' + (y - 9 + (200 - x) * 0.14) + ' q8 8 14 18" stroke="' + sc + '" stroke-width="3.4" fill="none" stroke-linecap="round"/>'; }); });
     else if (cfg.shape === 'loaf') { s += '<path d="M88 192 Q88 112 200 108 Q312 112 312 192 Q312 216 288 216 L112 216 Q88 216 88 192Z" fill="' + g + '"/>'; [138, 172, 206, 240].forEach((x) => { s += '<path d="M' + x + ' 128 q14 12 22 34" stroke="' + sc + '" stroke-width="4" fill="none" stroke-linecap="round"/>'; }); }
     else if (cfg.shape === 'rolls') [[128, 172], [272, 172], [200, 146], [164, 204], [236, 204]].forEach((p) => { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="40" fill="' + g + '"/><path d="M' + (p[0] - 16) + ' ' + (p[1] - 10) + ' q16 10 32 0" stroke="' + sc + '" stroke-width="3" fill="none" stroke-linecap="round"/>'; });
     else if (cfg.shape === 'ring') { s += '<circle cx="200" cy="164" r="86" fill="' + g + '"/><circle cx="200" cy="164" r="30" fill="' + cfg.bg[1] + '"/>'; for (let i = 0; i < 38; i++) { const an = rand() * 6.283, r = 44 + rand() * 38; s += '<circle cx="' + f(200 + r * Math.cos(an)) + '" cy="' + f(164 + r * Math.sin(an)) + '" r="2.2" fill="#fff" opacity=".85"/>'; } }
+    else if (cfg.shape === 'croissant') {
+      const cro = (cx, cy, k) => {
+        const segs = [];
+        for (let i = 0; i < 7; i++) { const t = -1 + (2 * i) / 6; segs.push(t); }
+        segs.sort((a, b) => Math.abs(b) - Math.abs(a)).forEach((t) => {
+          const a = t * 1.1, x = cx + Math.sin(a) * 118 * k, y = cy + (1 - Math.cos(a)) * 54 * k, w = 1 - Math.abs(t);
+          s += '<g transform="rotate(' + f((a * 180) / Math.PI) + ' ' + f(x) + ' ' + f(y) + ')"><ellipse cx="' + f(x) + '" cy="' + f(y) + '" rx="' + f((17 + w * 9) * k) + '" ry="' + f((18 + w * 22) * k) + '" fill="' + g + '" stroke="rgba(120,60,10,.35)" stroke-width="1.8"/><ellipse cx="' + f(x - 5 * k) + '" cy="' + f(y - (10 + w * 8) * k) + '" rx="' + f(5 * k) + '" ry="' + f((9 + w * 6) * k) + '" fill="rgba(255,255,255,.3)"/></g>';
+        });
+      };
+      cro(236, 138, 0.62); cro(198, 168, 0.95);
+    }
+    else if (cfg.shape === 'brioche') [[200, 150], [124, 188], [276, 188]].forEach((p) => { s += '<ellipse cx="' + p[0] + '" cy="' + p[1] + '" rx="44" ry="35" fill="' + g + '"/><ellipse cx="' + p[0] + '" cy="' + (p[1] - 28) + '" rx="20" ry="7" fill="rgba(110,55,10,.3)"/><circle cx="' + p[0] + '" cy="' + (p[1] - 38) + '" r="16" fill="' + g + '"/><ellipse cx="' + (p[0] - 18) + '" cy="' + (p[1] - 8) + '" rx="10" ry="5" fill="rgba(255,255,255,.35)" transform="rotate(-25 ' + (p[0] - 18) + ' ' + (p[1] - 8) + ')"/><ellipse cx="' + (p[0] - 5) + '" cy="' + (p[1] - 44) + '" rx="5" ry="3" fill="rgba(255,255,255,.4)"/>'; });
+    else if (cfg.shape === 'sonho') [[142, 178], [262, 178], [200, 152]].forEach((p) => {
+      s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="46" fill="' + g + '"/><ellipse cx="' + p[0] + '" cy="' + (p[1] + 2) + '" rx="46" ry="10" fill="rgba(255,238,190,.75)"/>';
+      for (let i = 0; i < 70; i++) { const an = rand() * 6.283, d = Math.sqrt(rand()) * 44; s += '<circle cx="' + f(p[0] + Math.cos(an) * d) + '" cy="' + f(p[1] + Math.sin(an) * d * 0.95) + '" r="' + f(1 + rand() * 1.3) + '" fill="#fff" opacity=".9"/>'; }
+    });
+    else if (cfg.shape === 'donut') [[132, 168, 0.8, 0], [268, 176, 0.9, 1], [200, 190, 1, 2]].forEach((p) => {
+      const k = p[2], x = p[0], y = p[1], gl = 'url(#' + id + 'gl' + p[3] + ')';
+      s += '<defs><radialGradient id="' + id + 'gl' + p[3] + '" cx=".4" cy=".35" r=".9"><stop offset="0" stop-color="' + cfg.glaze[p[3] % 2] + '"/><stop offset="1" stop-color="' + cfg.glaze[0] + '"/></radialGradient></defs>';
+      s += '<ellipse cx="' + x + '" cy="' + (y + 6 * k) + '" rx="' + f(80 * k) + '" ry="' + f(44 * k) + '" fill="rgba(110,55,10,.35)"/><ellipse cx="' + x + '" cy="' + y + '" rx="' + f(80 * k) + '" ry="' + f(46 * k) + '" fill="' + g + '"/><ellipse cx="' + x + '" cy="' + f(y - 3 * k) + '" rx="' + f(70 * k) + '" ry="' + f(38 * k) + '" fill="' + gl + '"/><ellipse cx="' + x + '" cy="' + f(y - 2 * k) + '" rx="' + f(23 * k) + '" ry="' + f(12 * k) + '" fill="' + cfg.table[0] + '"/>';
+      for (let i = 0; i < 18; i++) { const an = rand() * 6.283, d = 0.4 + rand() * 0.55, px = x + Math.cos(an) * 64 * k * d, py = y - 3 * k + Math.sin(an) * 34 * k * d; s += '<rect x="' + f(px - 4) + '" y="' + f(py - 1.2) + '" width="8" height="2.4" rx="1.2" fill="' + ['#e63946', '#ffd166', '#2a9d8f', '#4cc9f0', '#fff'][i % 5] + '" transform="rotate(' + f(rand() * 180) + ' ' + f(px) + ' ' + f(py) + ')"/>'; }
+    });
+    else if (cfg.shape === 'churros') [[182, 150, -10], [214, 176, -6], [190, 202, -12]].forEach((p) => {
+      s += '<g transform="rotate(' + p[2] + ' ' + p[0] + ' ' + p[1] + ')"><rect x="' + (p[0] - 90) + '" y="' + (p[1] - 15) + '" width="180" height="30" rx="15" fill="' + g + '"/>';
+      for (let x = -78; x <= 78; x += 7) s += '<line x1="' + (p[0] + x) + '" y1="' + (p[1] - 13) + '" x2="' + (p[0] + x) + '" y2="' + (p[1] + 13) + '" stroke="rgba(120,60,10,.3)" stroke-width="1.6"/>';
+      for (let i = 0; i < 40; i++) s += '<circle cx="' + f(p[0] - 80 + rand() * 160) + '" cy="' + f(p[1] - 11 + rand() * 22) + '" r="' + f(0.8 + rand() * 1.1) + '" fill="' + (rand() > 0.35 ? '#fff' : '#9b5a2a') + '" opacity=".85"/>';
+      s += '</g>';
+    });
+    else if (cfg.shape === 'spiral') [[200, 148], [128, 190], [272, 190]].forEach((p) => {
+      s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="46" fill="' + g + '"/>';
+      let d = '';
+      for (let t = 0.4; t < 8.6; t += 0.25) d += (d ? ' L' : 'M') + f(p[0] + Math.cos(t) * (4 + t * 4.7)) + ' ' + f(p[1] + Math.sin(t) * (4 + t * 4.7));
+      s += '<path d="' + d + '" fill="none" stroke="#8a4a1d" stroke-width="4" stroke-linecap="round" opacity=".7"/><path d="M' + (p[0] - 32) + ' ' + (p[1] - 8) + ' q8 -12 16 0 t16 0 t16 0 t16 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".9"/><path d="M' + (p[0] - 24) + ' ' + (p[1] + 10) + ' q8 -12 16 0 t16 0 t16 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".9"/>';
+    });
+    else if (cfg.shape === 'braid') {
+      s += '<ellipse cx="200" cy="176" rx="136" ry="38" fill="' + g + '" transform="rotate(-4 200 176)"/>';
+      for (let i = 0; i < 8; i++) { const x = 96 + i * 30, y = 176 - (x - 200) * 0.07, sg = i % 2 ? 1 : -1; s += '<ellipse cx="' + x + '" cy="' + f(y) + '" rx="16" ry="31" fill="' + g + '" stroke="rgba(120,60,10,.35)" stroke-width="1.8" transform="rotate(' + (sg * 38) + ' ' + x + ' ' + f(y) + ')"/><ellipse cx="' + (x - 4) + '" cy="' + f(y - 12) + '" rx="4" ry="12" fill="rgba(255,255,255,.3)" transform="rotate(' + (sg * 38) + ' ' + x + ' ' + f(y) + ')"/>'; }
+    }
+    else if (cfg.shape === 'focaccia') {
+      s += '<rect x="68" y="108" width="264" height="110" rx="18" fill="' + g + '"/><rect x="68" y="108" width="264" height="110" rx="18" fill="none" stroke="rgba(120,60,10,.3)" stroke-width="3"/>';
+      for (let i = 0; i < 34; i++) s += '<ellipse cx="' + f(86 + rand() * 228) + '" cy="' + f(122 + rand() * 82) + '" rx="4.5" ry="3" fill="rgba(150,90,20,.35)"/>';
+      for (let i = 0; i < 40; i++) { const x = 84 + rand() * 232, y = 120 + rand() * 86; s += '<path d="M' + f(x) + ' ' + f(y) + ' l' + f(5 + rand() * 4) + ' ' + f(-2 + rand() * 4) + '" stroke="#4d7a32" stroke-width="2" stroke-linecap="round"/>'; }
+      [[110, 140], [180, 176], [250, 138], [292, 184], [214, 128]].forEach((p) => { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="8.5" fill="#d6303f"/><ellipse cx="' + (p[0] - 3) + '" cy="' + (p[1] - 3) + '" rx="2.5" ry="1.6" fill="#fff" opacity=".5"/>'; });
+      [[148, 156], [226, 160], [140, 196], [270, 156], [318, 150]].forEach((p) => { s += '<ellipse cx="' + p[0] + '" cy="' + p[1] + '" rx="6.5" ry="5" fill="#3a3a2a"/><circle cx="' + p[0] + '" cy="' + p[1] + '" r="1.8" fill="#c9b27a"/>'; });
+      for (let i = 0; i < 30; i++) s += '<circle cx="' + f(80 + rand() * 240) + '" cy="' + f(116 + rand() * 96) + '" r="1.2" fill="#fff" opacity=".85"/>';
+    }
+    else if (cfg.shape === 'sirio') [[168, 190, 80], [236, 156, 76]].forEach((p) => {
+      s += '<ellipse cx="' + p[0] + '" cy="' + p[1] + '" rx="' + (p[2] + 34) + '" ry="' + f(p[2] * 0.42) + '" fill="' + g + '"/>';
+      for (let i = 0; i < 12; i++) { const an = rand() * 6.283, d = Math.sqrt(rand()) * 0.85; s += '<ellipse cx="' + f(p[0] + Math.cos(an) * (p[2] + 34) * d) + '" cy="' + f(p[1] + Math.sin(an) * p[2] * 0.42 * d) + '" rx="' + f(5 + rand() * 7) + '" ry="' + f(3 + rand() * 3) + '" fill="rgba(140,80,20,.38)"/>'; }
+    });
+    else if (cfg.shape === 'esfiha') [[132, 166], [268, 166], [200, 150], [160, 204], [240, 204]].forEach((p) => {
+      s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="40" fill="' + g + '"/><circle cx="' + p[0] + '" cy="' + p[1] + '" r="29" fill="#8a3b22"/><circle cx="' + p[0] + '" cy="' + p[1] + '" r="29" fill="none" stroke="rgba(60,20,8,.4)" stroke-width="2"/>';
+      for (let i = 0; i < 9; i++) s += '<circle cx="' + f(p[0] + (rand() - 0.5) * 44) + '" cy="' + f(p[1] + (rand() - 0.5) * 44) + '" r="' + f(1.6 + rand() * 1.4) + '" fill="' + (i % 3 ? '#4d7a32' : '#d6503a') + '"/>';
+    });
+    else if (cfg.shape === 'enrolado') [[150, 140, -14], [254, 160, 10], [158, 200, 6], [262, 206, -8]].forEach((p) => {
+      s += '<g transform="rotate(' + p[2] + ' ' + p[0] + ' ' + p[1] + ')"><rect x="' + (p[0] - 62) + '" y="' + (p[1] - 18) + '" width="124" height="36" rx="18" fill="' + g + '"/>';
+      for (let i = -3; i <= 3; i++) s += '<path d="M' + (p[0] + i * 16 - 6) + ' ' + (p[1] - 17) + ' l12 34" stroke="rgba(120,60,10,.32)" stroke-width="3" stroke-linecap="round"/>';
+      s += '<ellipse cx="' + (p[0] - 30) + '" cy="' + (p[1] - 9) + '" rx="14" ry="4" fill="rgba(255,255,255,.32)"/></g>';
+    });
+    else if (cfg.shape === 'bowl') {
+      s += '<defs><linearGradient id="' + id + 'bw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#f3ede0"/><stop offset="1" stop-color="#e4d9c4"/></linearGradient></defs>';
+      s += '<path d="M96 138 Q96 232 200 232 Q304 232 304 138 Z" fill="url(#' + id + 'bw)"/><ellipse cx="200" cy="138" rx="104" ry="20" fill="#fff"/><ellipse cx="200" cy="140" rx="92" ry="15" fill="' + g + '"/>';
+      s += '<path d="M130 138 q22 -14 44 0 t44 0 t44 0" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="4" stroke-linecap="round"/><path d="M110 224 L66 168" stroke="#d9b45a" stroke-width="9" stroke-linecap="round"/><ellipse cx="62" cy="162" rx="14" ry="10" fill="#e9c872" transform="rotate(-48 62 162)"/>';
+    }
     else [[150, 176], [250, 176], [200, 150], [126, 208], [200, 212], [274, 208], [200, 182]].forEach((p) => { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="32" fill="' + g + '"/><ellipse cx="' + (p[0] - 9) + '" cy="' + (p[1] - 10) + '" rx="9" ry="5" fill="rgba(255,255,255,.35)"/>'; });
     return s;
   }

@@ -7,7 +7,7 @@
   const { num, dates } = DL;
 
   /* ---------- Constantes ---------- */
-  DL.CATEGORIES = ['Pães salgados', 'Pães doces', 'Roscas e broas', 'Salgados de forno', 'Massas e recheios', 'Outros'];
+  DL.CATEGORIES = ['Pães salgados', 'Pães doces', 'Roscas e broas', 'Salgados de forno', 'Brioches e folhados', 'Sonhos e fritos', 'Massas e recheios', 'Outros'];
   DL.ORDER_STATUS = ['Pedido', 'Em produção', 'Pronto', 'Entregue', 'Cancelado'];
   DL.ORDER_DELIVERY = ['Retirada', 'Entrega'];
   DL.ORDER_SIZES = ['Unidade', 'Meia dúzia', 'Dúzia', 'Cento', 'Kit café da manhã', 'Cesta'];
