@@ -1,2 +1,2 @@
-Fotos dos pães: salve aqui (JPG, até 800 px) e mapeie em js/art.js, no objeto PHOTOS.
-Exemplo: 'pao-frances': 'pao-frances'  -> usa img/receitas/pao-frances.jpg
+Fotos dos pães (JPG, até ~960 px). O nome do arquivo é o id da receita (ex.: pao-frances-caseiro.jpg) e é ligado em js/recipes-data.js (campo photo).
+paes.jpg é a foto do topo da página inicial e também a foto genérica usada quando um tipo não tem foto própria (mapa PHOTOS em js/art.js).

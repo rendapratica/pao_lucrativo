@@ -1,5 +1,4 @@
-/* art.js — fotos dos bolos (img/receitas) e, na falta delas, ilustrações originais (SVG) usadas quando
-   não há uma fotografia. Nenhuma imagem externa: funciona offline e sem direitos autorais. */
+/* art.js — fotos dos pães (img/receitas) usadas em todo o sistema. Nenhuma imagem externa: funciona offline. */
 (function (global) {
   'use strict';
   const DL = (global.DL = global.DL || {});
@@ -238,13 +237,20 @@
   }
   DL.artSvg = art;
 
-  // Fotos reais de cada tipo de bolo. Quando existe foto, DL.art devolve <img>; senão, o desenho em SVG.
-  const PHOTOS = {}; // sem fotos por enquanto: salve em img/receitas/ e mapeie aqui, ex.: 'pao-frances': 'pao-frances'
+  // Fotos de cada tipo de pão (img/receitas). DL.art sempre devolve uma <img>: a foto do tipo, ou a foto
+  // geral da cesta de pães ('paes') quando o tipo não tem foto própria. O desenho em SVG (DL.artSvg) não é mais usado.
+  const FALLBACK = 'paes';
+  const PHOTOS = {
+    mix: 'paes', 'pao-frances': 'pao-frances-caseiro', 'pao-forma': 'pao-forma-caseiro', 'pao-integral': 'pao-integral-sementes',
+    'pao-doce': 'pao-doce-padaria', 'pao-queijo': 'pao-queijo-mineiro', rosca: 'rosca-coco', broa: 'broa-milho',
+    croissant: 'croissant-tradicional', brioche: 'brioche-classico', sonho: 'sonho-creme', donut: 'donut-glaceado',
+    churros: 'churros-doce-leite', canela: 'rolinho-canela', tranca: 'pao-trancado-doce', focaccia: 'focaccia-alecrim',
+    sirio: 'pao-sirio', creme: 'creme-confeiteiro', esfiha: 'paes', enrolado: 'paes'
+  };
   DL.art = function (kind, opts) {
     opts = opts || {};
-    const file = PHOTOS[kind];
-    if (!file) return art(kind, opts);
-    const label = (opts.label || (K[kind] && K[kind].label) || 'Bolos').replace(/^Ilustração (de |: )?/, '');
+    const file = PHOTOS[kind] || FALLBACK;
+    const label = (opts.label || (K[kind] && K[kind].label) || 'Pães').replace(/^Ilustração (de |: )?/, '');
     return '<img src="img/receitas/' + file + '.jpg" alt="' + label.replace(/"/g, '&quot;') + '" loading="lazy">';
   };
 })(typeof globalThis !== 'undefined' ? globalThis : window);
